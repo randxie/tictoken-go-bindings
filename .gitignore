@@ -19,3 +19,6 @@
 
 # Go workspace file
 go.work
+
+# Compiled Object files, Static and Dynamic libs (Shared Objects)
+libtiktoken_ffi.a
