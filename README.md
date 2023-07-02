@@ -6,9 +6,9 @@ The Golang and Rust setup are mostly from [Daulet's Golang bindings](https://git
 
 ## How to play with the code
 
-To build, run `make build`
-To run unit tests, run `make test`
-To format the code, run `make format`
+* To build, run `make build`
+* To run unit tests, run `make test`
+* To format the code, run `make format`
 
 ## Potential Issues
 
