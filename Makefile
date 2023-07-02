@@ -3,7 +3,7 @@
 .PHONY: build
 build:
 	@cd lib && cargo build --release
-	@cp lib/target/release/libtiktoken_ffi.a lib/
+	@cp lib/target/release/libtiktoken_ffi.a ./
 	go build .
 
 .PHONY: test

@@ -19,7 +19,7 @@ pub extern "C" fn free_bpe(ptr: *mut ::libc::c_void) {
 }
 
 #[no_mangle]
-pub extern "C" fn encode(ptr: *mut libc::c_void, prompt: *const libc::c_char) -> *mut usize {    
+pub extern "C" fn encode(ptr: *mut libc::c_void, prompt: *const libc::c_char, len: *mut u32) -> *mut u32 {    
     let bpe: &CoreBPE;
     unsafe {
         bpe = ptr.cast::<CoreBPE>().as_ref().expect("failed to cast bpe");
@@ -27,9 +27,14 @@ pub extern "C" fn encode(ptr: *mut libc::c_void, prompt: *const libc::c_char) ->
     let prompt_cstr = unsafe { CStr::from_ptr(prompt) };
     let prompt = prompt_cstr.to_str().unwrap();
 
-    let mut vec = bpe.encode_with_special_tokens(prompt);
-    vec.shrink_to_fit();
-    let vec_ptr = vec.as_mut_ptr();
-    std::mem::forget(vec);
-    vec_ptr
+    let vec = bpe.encode_with_special_tokens(prompt);
+    unsafe {
+        *len = vec.len() as u32;
+    }
+
+    // cast usize to u32 as return.
+    let mut output: Vec<u32> = vec.iter().map(|&e| e as u32).collect();
+    let output_ptr = output.as_mut_ptr();
+    std::mem::forget(output);
+    output_ptr
 }

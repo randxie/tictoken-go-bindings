@@ -21,6 +21,10 @@ rustflags = [
 ]
 ```
 
+2. Set up Goproxy in China
+
+Run `export GOPROXY=https://goproxy.cn/`
+
 ## Reference
 
 1. [Rust + Go Examples](https://github.com/mediremi/rust-plus-golang)
