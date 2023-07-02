@@ -5,3 +5,4 @@
 void *get_bpe_from_model(const char *model);
 void free_bpe(void *ptr);
 uint32_t *encode(void *ptr, const char *prompt, uint32_t *len /*output length*/);
+char *decode(void *ptr, const uint32_t *ids, uint32_t len);
